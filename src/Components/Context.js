@@ -1,4 +1,6 @@
 import { useState, createContext, useEffect } from "react"
+import { apikey } from "../keys.js"
+
 const Context = createContext()
 
 function PokemonInfoContextProvider({children}) {
@@ -7,7 +9,8 @@ function PokemonInfoContextProvider({children}) {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '467686f795msh5d709b323480269p1381a0jsn77efa3eaa824',
+//            'X-RapidAPI-Key': '467686f795msh5d709b323480269p1381a0jsn77efa3eaa824',
+            'X-RapidAPI-Key': apikey,
             'X-RapidAPI-Host': 'pokemon-go1.p.rapidapi.com'
         }
     };
@@ -15,9 +18,13 @@ function PokemonInfoContextProvider({children}) {
     useEffect(() => {
         fetch('https://pokemon-go1.p.rapidapi.com/type_effectiveness.json', options)
             .then(response => response.json())
-            .then(response => setData(response))
+            .then(response => {
+                setData(response)
+                localStorage.setItem("type_effectiveness", response);
+            })
             .catch(err => console.error(err));
-    })
+    }, [])
+
     return (
         <Context.Provider value={data}>
             {children}

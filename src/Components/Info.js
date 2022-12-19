@@ -29,7 +29,8 @@ export default function Info() {
                 <button onClick={TypeEffectivenessSearch}>Type Effectiveness</button>
                 <button onClick={PokemonRaritySearch}>Pokemon Rarity</button>
             </div>
-            <div>{PokemonData}</div>
+            <div>Esa</div>
         </>
-    )
+    )//import { apikey } from "./keys.js"
+
 }
