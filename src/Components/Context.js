@@ -16,13 +16,22 @@ function PokemonInfoContextProvider({children}) {
     };
 
     useEffect(() => {
-        fetch('https://pokemon-go1.p.rapidapi.com/type_effectiveness.json', options)
-            .then(response => response.json())
-            .then(response => {
-                setData(response)
-                localStorage.setItem("type_effectiveness", response);
-            })
-            .catch(err => console.error(err));
+        if (!localStorage.type_effectiveness) {
+            console.log("fetch from API")
+            fetch('https://pokemon-go1.p.rapidapi.com/type_effectiveness.json', options)
+                .then(response => response.json())
+                .then(response => {
+                    setData(response)
+                    localStorage.setItem("type_effectiveness", response);
+                })
+                .catch(err => console.error(err));
+        }
+        else
+        {
+            console.log("fetch from localStorage")
+            setData(localStorage.getItem("type_effectiveness"))
+        }
+        
     }, [])
 
     return (
