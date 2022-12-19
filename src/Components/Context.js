@@ -16,8 +16,8 @@ function PokemonInfoContextProvider({children}) {
     };
 
     useEffect(() => {
-        if (!localStorage.type_effectiveness) {
-            console.log("fetch from API")
+/*        if (!localStorage.type_effectiveness) {
+            console.log("fetch from API")*/
             fetch('https://pokemon-go1.p.rapidapi.com/type_effectiveness.json', options)
                 .then(response => response.json())
                 .then(response => {
@@ -25,12 +25,14 @@ function PokemonInfoContextProvider({children}) {
                     localStorage.setItem("type_effectiveness", response);
                 })
                 .catch(err => console.error(err));
-        }
+/*        }
         else
         {
             console.log("fetch from localStorage")
+            const fromLocal = localStorage.getItem("type_effectiveness")
+            console.log("From local storage: ", fromLocal)
             setData(localStorage.getItem("type_effectiveness"))
-        }
+        }*/
         
     }, [])
 

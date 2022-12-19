@@ -9,9 +9,22 @@ export default function Info() {
     console.log("Info")
 
     const [currentDataType, setCurrentDataType] = useState("")
+    //Get object who's keys are poketypes and values are objects with the same keys
+    //with effectiveness as values
     const PokemonData = useContext(Context)
-    console.log(PokemonData)
-
+    /*
+        https://www.javascripttutorial.net/object/convert-an-object-to-an-array-in-javascript/
+        const propertyNames = Object.keys(person);
+    */
+    //Get array poke types
+    const pokeTypes = Object.keys(PokemonData);
+    console.log("pokeTypes: ", pokeTypes)
+    const pokeDivs = pokeTypes.map( (pokeType) => (<div key={pokeType}>{pokeType}</div>) )
+    for (var key in PokemonData) {
+        if (PokemonData.hasOwnProperty(key)) {
+          console.log(PokemonData[key]);
+        }
+    }
     const TypeEffectivenessSearch = () => {
         console.log("TypeEffectivenessSearch")
         setCurrentDataType("TypeEffectiveness")
@@ -29,7 +42,7 @@ export default function Info() {
                 <button onClick={TypeEffectivenessSearch}>Type Effectiveness</button>
                 <button onClick={PokemonRaritySearch}>Pokemon Rarity</button>
             </div>
-            <div>Esa</div>
+            <div>{pokeDivs}</div>
         </>
     )//import { apikey } from "./keys.js"
 
