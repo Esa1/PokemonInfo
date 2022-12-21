@@ -8,26 +8,29 @@ import TypeEffectiveness from "./TypeEffectiveness"
 export default function Info() {
     console.log("Info")
 
-    const [currentDataType, setCurrentDataType] = useState("")
+    const [currentInfo, setCurrentInfo] = useState("")
     
-    const TypeEffectivenessSearch = () => {
-        console.log("TypeEffectivenessSearch")
-        setCurrentDataType("TypeEffectiveness")
+    function handleChange(e) {
+        setCurrentInfo(e.target.value)
     }
-
-    const PokemonRaritySearch = () => {
-        console.log("PokemonRaritySearch")
-        setCurrentDataType("PokemonRarity")
-    }
+    console.log(currentInfo)
 
     return (
         <>
             <h2>Search for:</h2>
-            <div>
-                <button onClick={TypeEffectivenessSearch}>Type Effectiveness</button>
-                <button onClick={PokemonRaritySearch}>Pokemon Rarity</button>
-            </div>
-            {currentDataType === "TypeEffectiveness" && <TypeEffectiveness />}  
+            <form>
+                <label htmlFor="infoSelection">Select info type: </label>
+                <select
+                    id="infoSelection"
+                    name="infoSelection"
+                    onChange={handleChange}
+                >
+                    <option value="">---Select---</option>
+                    <option value="TypeEffectiveness">TypeEffectiveness</option>
+                    <option value="PokemonRarity">PokemonRarity</option>
+                </select>
+            </form>
+            {currentInfo === "TypeEffectiveness" && <TypeEffectiveness />}  
         </>
     )//import { apikey } from "./keys.js"
 
