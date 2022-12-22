@@ -1,9 +1,3 @@
-/* Version history
-    22/12/22
-    Fetching data by select box working.
-
-*/
-
 import { useState, createContext, useEffect } from "react"
 import { apikey } from "../keys.js"
 import apiEndPoints from "../tools/apiEndPoints.js"
@@ -31,8 +25,7 @@ function PokemonInfoContextProvider({children}) {
     };
 
     function setFetchApi(apiName) {
-        if (data[apiName]) console.log(`setFetchApi: ${apiName} data already exists`)
-        else setApiToFetch(apiName)
+        setApiToFetch(apiName)
     }
 
     useEffect(() => {
@@ -43,8 +36,8 @@ function PokemonInfoContextProvider({children}) {
                 .then(response => response.json())
                 .then(response => {
 //                    setData(response)
-                    setData(prevData => ({
-                        ...prevData,
+                    setData(d => ({
+                        ...d,
                         [apiToFetch]: response
                     }))
 /*                    d = {
@@ -59,7 +52,7 @@ function PokemonInfoContextProvider({children}) {
             console.log("d= ", d)*/
         }
 , [apiToFetch])
-//console.log("data=", data)
+console.log("data=", data)
     return (
         <Context.Provider value={{data, setFetchApi}}>
             {children}
