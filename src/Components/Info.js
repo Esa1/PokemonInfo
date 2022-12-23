@@ -7,21 +7,14 @@ import React, { useContext, useState } from "react"
 import TypeEffectiveness from "./TypeEffectiveness"
 import {Context} from "./Context"
 
-/* 1. Add state to this component to hold the new username in a controlled form
-* (https://reactjs.org/docs/forms.html#controlled-components)
-* (https://scrimba.com/p/p7P5Hd/cW8Jdfy)*/
-
 export default function Info() {
-    console.log("Info")
-
     const [currentInfo, setCurrentInfo] = useState("")
     const {setFetchApi} = useContext(Context) //Get the context for setting new fetch api
     
     function handleChange(e) {
         setCurrentInfo(e.target.value)
-        setFetchApi(e.target.value) //22.
+        setFetchApi(e.target.value)
     }
-    console.log(currentInfo)
 
     return (
         <>
@@ -39,6 +32,5 @@ export default function Info() {
             </form>
             {currentInfo === "type_effectiveness" && <TypeEffectiveness />}  
         </>
-    )//import { apikey } from "./keys.js"
-
+    )
 }
