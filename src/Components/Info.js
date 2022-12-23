@@ -26,6 +26,7 @@ export default function Info() {
                     name="infoSelection"
                     onChange={handleChange}
                 >
+                    <option value="">-- Select --</option>
                     <option value="type_effectiveness">TypeEffectiveness</option>
                     <option value="type_effectiveness">PokemonRarity</option>
                 </select>

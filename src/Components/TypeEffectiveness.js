@@ -28,7 +28,7 @@ export default function TypeEffectiveness() {
     const currentDataArr = Object.entries(dataForCurrentType)
 
     const displayData = currentDataArr.map(item => {
-        return <div>{item[0]}: {item[1]}</div>
+        return <div key={item[0]}>{item[0]}: {item[1]}</div>
     })
 
     function handleChange(e) {
