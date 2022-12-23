@@ -32,6 +32,7 @@ function PokemonInfoContextProvider({children}) {
     }
 
     useEffect(() => {
+        console.log("Context, fetch ", apiToFetch)
             fetch(`https://pokemon-go1.p.rapidapi.com/${apiToFetch}.json`, options)
                 .then(response => response.json())
                 .then(response => {
@@ -42,7 +43,7 @@ function PokemonInfoContextProvider({children}) {
                 })
                 .catch(err => console.error(err));
         }, [apiToFetch])
-    
+    console.log(data)
     return (
         <Context.Provider value={{data, setFetchApi}}>
             {children}
